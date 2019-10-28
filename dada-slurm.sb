@@ -1,0 +1,14 @@
+  
+#!/bin/bash -login
+#SBATCH --time=50:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=24
+#SBATCH --mem=100G
+#SBATCH --job-name dada
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=howead@msu.edu
+#SBATCH --account shadeash-colej
+
+
+/mnt/home/howead/R-3.6.1/bin/R << dada-exec.R
+
