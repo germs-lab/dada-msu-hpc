@@ -15,7 +15,12 @@ errF <- learnErrors(filtFs2, multithread=TRUE)
 errR <- learnErrors(filtRs2, multithread=TRUE)
 dadaFs <- dada(filtFs2, err=errF, multithread=TRUE)
 dadaRs <- dada(filtRs2, err=errR, multithread=TRUE)
+save.image("/mnt/research/germs/soil-column2-16S/dada.RData")
+
 mergers <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE)
+
+
+
 head(mergers[[1]])
 seqtab <- makeSequenceTable(mergers)
 dim(seqtab)
