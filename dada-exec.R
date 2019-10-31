@@ -1,5 +1,5 @@
 library(dada2)
-path <- "/mnt/research/germs/soil-column2-16S/"
+path <- "/mnt/research/germs/soil-column2-16S"
 fnFs <- sort(list.files(path, pattern="_R1_001.fastq", full.names = TRUE))
 fnRs <- sort(list.files(path, pattern="_R2_001.fastq", full.names = TRUE))
 sample.names <- sapply(strsplit(basename(fnFs), "_"), function(x) paste(x[1], x[2], sep="_"))
@@ -17,7 +17,7 @@ dadaFs <- dada(filtFs2, err=errF, multithread=TRUE)
 dadaRs <- dada(filtRs2, err=errR, multithread=TRUE)
 save.image("/mnt/research/germs/soil-column2-16S/dada.RData")
 
-mergers <- mergePairs(dadaFs, filtFs, dadaRs, filtRs, verbose=TRUE)
+mergers <- mergePairs(dadaFs, filtFs2, dadaRs, filtRs2, verbose=TRUE)
 
 
 
@@ -34,3 +34,4 @@ track <- cbind(out, sapply(dadaFs, getN), sapply(dadaRs, getN), sapply(mergers, 
 colnames(track) <- c("input", "filtered", "denoisedF", "denoisedR", "merged", "nonchim")
 rownames(track) <- sample.names
 head(track)
+save.image("/mnt/research/germs/soil-column2-16S/dada2.RData")
